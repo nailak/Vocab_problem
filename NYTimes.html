@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head id='head'>
+    <meta charset="utf-8">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <title>Vocabulary Prob</title>
+   <!--  // <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    // <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    --> 
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- // <script type="text/javascript" src=".js"></script> -->
+    <!-- <link rel="stylesheet" href="stylesheets/base.css"> -->
+    <script type="text/javascript">
+    $(document).ready(function(){
+        var TimesTagsAPIkey='a8db8012217ff6a0cf8a4ab616210b50:12:66738105';
+        var TimesSearchAPIkey='f6fcb7d8529cc6f75a5686e2496a3348:3:66738105';
+        var NYT_API='http://api.nytimes.com/svc/search/v1/article';
+        var articlesSearch= {};
+
+        //sample get articles - must inspect in console 
+
+        $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105')
+
+        //using call back??
+        // $.getJSON(NYT_API+'?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key='+TimesSearchAPIkey+'?callback=?', 
+        //     function(json) {
+        //         articleObj=$.parseJSON(json.responseText);
+        //         articles=articleObj.results;
+        //         for (var item in articles){
+        //             $('#articles').append('<span>'+articles[item].title+'</span>')
+        //         }
+        //     }
+        // );
+            
+        
+    });
+
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Testing NYT API</h1>
+        <p>Results are:<p>
+            <div id="articles">
+            </div>
+    </div>
+</body>
+</html>
