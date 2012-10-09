@@ -3,6 +3,7 @@
 <head id='head'>
     <meta charset="utf-8">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<LINK REL=StyleSheet HREF="TheCSS.css" TYPE="text/css">
     <title>Vocabulary Prob</title>
    <!--  // <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     // <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
@@ -11,6 +12,7 @@
     <!-- // <script type="text/javascript" src=".js"></script> -->
     <!-- <link rel="stylesheet" href="stylesheets/base.css"> -->
     <script type="text/javascript">
+	/*
     $(document).ready(function(){
         var TimesTagsAPIkey='a8db8012217ff6a0cf8a4ab616210b50:12:66738105';
         var TimesSearchAPIkey='f6fcb7d8529cc6f75a5686e2496a3348:3:66738105';
@@ -19,7 +21,7 @@
 
         //sample get articles - must inspect in console 
 
-        $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105')
+        $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice')
 
         //using call back??
         // $.getJSON(NYT_API+'?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key='+TimesSearchAPIkey+'?callback=?', 
@@ -34,6 +36,20 @@
             
         
     });
+	*/
+	$(document).ready(function()
+	{
+	$('a').live('click', function() {
+	//FIRST, CHANGE ALL TABS TO NORMAL-- children() of TabContent is the <a> tag
+	$('.TabContent').children().each(function(){
+									 $(this).removeClass("Selected").addClass("Unselected");
+									 });
+	//NEXT, CHNAGE STYLE OF SELECTED TAB
+	$(this).removeClass("Unselected").addClass("Selected");
+	
+	return false;
+	});
+	});
 
     </script>
 </head>
@@ -45,5 +61,22 @@
             <div id="articles">
             </div>
     </div>
+	
+	<ul class="Tabs">
+	<li class="TabContent" ><a href="" class="Selected">Tag1 Word</a> </li>
+	<li class="TabContent" ><a href="" class="Unselected">Tag2 Word</a> </li>
+	<li class="TabContent" ><a href="" class="Unselected">Tag3 Word</a> </li>
+	</ul>
+	<div class="Frame">
+	</div>
+	
+	
+	
+	Title
+	Link
+	Body-Summary
+	Author
+	
+	
 </body>
 </html>
