@@ -1,4 +1,7 @@
-.container{
+/*a:active MUST come after a:hover in the CSS definition in order to be effective*/
+/*a:hover MUST come after a:link and a:visited in the CSS definition in order to be effective*/
+
+#WholePageContent{
 font-family:"cambria";}
 
 .Tabs{
@@ -8,13 +11,12 @@ paddin:0;
 font-family:"cambria";
 }
 
- .Tabs li{
- display:inline-block;
- clear:none; }
+.Tabs li{
+display:inline-block;
+clear:none; }
  
- 
- .TabContent a{
- position: relative;
+.TabContent a{
+position: relative;
 margin-top: 16px;
 display: block;
 margin-left: 6px;
@@ -32,7 +34,6 @@ width: 130px;
 color: #000000;
 text-decoration: none;
 font-weight: bold;
-
 }
 
 /*REGULAR STYLE OF TABS*/
@@ -51,17 +52,11 @@ padding-bottom:3px;
 z-index:99;
  }
 
-/*a:hover MUST come after a:link and a:visited in the CSS definition in order to be effective*/
 .TabContent a:hover{
  background-color:AliceBlue;
-
 }
 
-
-/*a:active MUST come after a:hover in the CSS definition in order to be effective*/
-
- 
- .Frame{
+#Frame{
 /* this is the css class for the content displayed in each tab */
 padding: 0 0;
 clear:both;
@@ -72,8 +67,36 @@ height: 500px;
 width:98%;
 overflow: hidden;
 border:1px solid DarkBlue;
-
 top:-2px;
 background-color:AliceBlue;
-
 }
+
+.Title{
+margin-left:50px;
+margin-top:20px; }
+
+.TitleLink {
+ font-weight:bolder;
+ border:0px;
+ text-decoration:none;
+ color:Chocolate;
+}
+ 
+.Title a:active{
+color:Chocolate;
+}
+ 
+.BodySummary{
+ margin-left:100px;
+ margin-right:100px;
+}
+
+.Author{
+margin-left:100px;
+ margin-right:100px;
+font-style:italic;
+text-decoration:underline;
+color:Brown;
+text-transform:capitalize;
+}
+ 
