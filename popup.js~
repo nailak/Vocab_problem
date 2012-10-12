@@ -28,7 +28,7 @@ $(document).on("ready", function() {
 	chrome.extension.sendRequest({value: "hello"}, null);
 	
 });*/
-		var thisMessage = "goodbye";
+		
 		 function click() {
 			  chrome.tabs.executeScript(null, {file: "contentscript.js"});
 			  document.getElementById("extensionpopupcontent").innerHTML = variableDefinedInContentScript;
@@ -38,7 +38,7 @@ $(document).on("ready", function() {
 		chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 			if (sender.tab){
 				console.log(request.greeting);
-			    sendResponse({farewell: thisMessage});
+			    sendResponse({farewell: "goodbye"});
 		  	}
 		  else
 		  	sendResponse({}); // snub them.
