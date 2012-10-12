@@ -1,13 +1,23 @@
-tagsHtml = document.getElementsByClassName('name_text');
-var tags = {
-	html: tagsHtml
-};
-console.log("Content script 1");
-chrome.extension.sendRequest({action:'start'}, function(response) {
-  console.log('Start action sent');  
+
+var myMessage = document.getElementsByClassName("name_text");
+console.log(myMessage);
+
+var str = "";
+for (var i = 0; i < myMessage.length; i++){
+	str += myMessage[i].innerHTML;	
+}
+console.log(str);
+/* Some test code for parsing
+ * //JSON.stringify(myMessage);
+var myMessageString = $.parseJSON('[' + str + ']');
+console.log("About to send...");
+console.log(myMessage);
+console.log("String form");
+console.log(myMessageString);
+*/
+var myMessageString = "hello";
+chrome.extension.sendRequest({greeting: str}, function(response) {
+	console.log("Sent Request");
+  console.log(response.farewell);
 });
 
-console.log(document.getElementsByClassName('name_text'));
-
-console.log("Content script 2");
-console.log(tagsHtml);
