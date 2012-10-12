@@ -39,7 +39,7 @@
 	*/
 	$(document).ready(function()
 	{
-	$('a').live('click', function() {
+	$('.TabContent a').live('click', function() {
 	//FIRST, CHANGE ALL TABS TO NORMAL-- children() of TabContent is the <a> tag
 	$('.TabContent').children().each(function(){
 									 $(this).removeClass("Selected").addClass("Unselected");
@@ -54,7 +54,7 @@
     </script>
 </head>
 
-<body>
+<body id="WholePageContent">
     <div class="container">
         <h1>Testing NYT API</h1>
         <p>Results are:<p>
@@ -62,21 +62,31 @@
             </div>
     </div>
 	
+	<!--Tab Structure-->
 	<ul class="Tabs">
 	<li class="TabContent" ><a href="" class="Selected">Tag1 Word</a> </li>
 	<li class="TabContent" ><a href="" class="Unselected">Tag2 Word</a> </li>
 	<li class="TabContent" ><a href="" class="Unselected">Tag3 Word</a> </li>
 	</ul>
-	<div class="Frame">
+	
+	<!--"Frame" is the box where the content of each tab is displayed-->
+	<div id="Frame">
+	<p>Here are top 5 links to articles that match the tags in Quora</p>
+	
+	<div class="Title">
+	<a href="" class="TitleLink" target="_blank">This is the Title linked to the actual article in NY Times</a>
 	</div>
 	
+	<div class="BodySummary">
+	This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text. 
+	</div>
 	
+	<div class="Author">
+	By: Author name
+	</div>
 	
-	Title
-	Link
-	Body-Summary
-	Author
+	</div>
 	
-	
+		
 </body>
 </html>
