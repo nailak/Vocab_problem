@@ -3,6 +3,7 @@
 <head id='head'>
     <meta charset="utf-8">
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
+	<LINK REL=StyleSheet HREF="TheCSS.css" TYPE="text/css">
     <title>Vocabulary Prob</title>
    <!--  // <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
     // <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
@@ -13,6 +14,7 @@
     <!-- // <script type="text/javascript" src=".js"></script> -->
     <!-- <link rel="stylesheet" href="stylesheets/base.css"> -->
     <script type="text/javascript">
+	/*
     $(document).ready(function(){
         var TimesTagsAPIkey='a8db8012217ff6a0cf8a4ab616210b50:12:66738105';
         var TimesSearchAPIkey='f6fcb7d8529cc6f75a5686e2496a3348:3:66738105';
@@ -80,6 +82,7 @@
         // console.log(articleObj);
 
 
+<<<<<<< HEAD
         // $(document).ready(function() {
         //      $("#jsonpbtn").click(function() {
         //         var surl =  "http://www.fbloggs.com/sandbox/jsonp.php?callback=?";
@@ -89,6 +92,9 @@
         //         });
         //      });
         //     });
+=======
+        $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice')
+>>>>>>> c7ab864616efe443eabb244001c9e91dc110cda6
 
         //using call back?? this doesnt work either
         // $.getJSON(NYT_API+'?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key='+TimesSearchAPIkey+'?callback=?', 
@@ -101,12 +107,30 @@
         //     }
         // );
         
+<<<<<<< HEAD
     // });
+=======
+    });
+	*/
+	$(document).ready(function()
+	{
+	$('.TabContent a').live('click', function() {
+	//FIRST, CHANGE ALL TABS TO NORMAL-- children() of TabContent is the <a> tag
+	$('.TabContent').children().each(function(){
+									 $(this).removeClass("Selected").addClass("Unselected");
+									 });
+	//NEXT, CHNAGE STYLE OF SELECTED TAB
+	$(this).removeClass("Unselected").addClass("Selected");
+	
+	return false;
+	});
+	});
+>>>>>>> c7ab864616efe443eabb244001c9e91dc110cda6
 
     </script>
 </head>
 
-<body>
+<body id="WholePageContent">
     <div class="container">
         <h1>Testing NYT API</h1>
         <p>Results are:<p>
@@ -114,5 +138,32 @@
             <div id="articles">
             </div>
     </div>
+	
+	<!--Tab Structure-->
+	<ul class="Tabs">
+	<li class="TabContent" ><a href="" class="Selected">Tag1 Word</a> </li>
+	<li class="TabContent" ><a href="" class="Unselected">Tag2 Word</a> </li>
+	<li class="TabContent" ><a href="" class="Unselected">Tag3 Word</a> </li>
+	</ul>
+	
+	<!--"Frame" is the box where the content of each tab is displayed-->
+	<div id="Frame">
+	<p>Here are top 5 links to articles that match the tags in Quora</p>
+	
+	<div class="Title">
+	<a href="" class="TitleLink" target="_blank">This is the Title linked to the actual article in NY Times</a>
+	</div>
+	
+	<div class="BodySummary">
+	This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text. 
+	</div>
+	
+	<div class="Author">
+	By: Author name
+	</div>
+	
+	</div>
+	
+		
 </body>
 </html>
