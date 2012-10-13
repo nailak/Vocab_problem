@@ -9,6 +9,8 @@
     // <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
     --> 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+
     <!-- // <script type="text/javascript" src=".js"></script> -->
     <!-- <link rel="stylesheet" href="stylesheets/base.css"> -->
     <script type="text/javascript">
@@ -20,10 +22,81 @@
         var articlesSearch= {};
 
         //sample get articles - must inspect in console 
+         // $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105')
+         var searchResponse;
+        // NYTsearch=$.getJSON('http://api.nytimes.com/svc/search/v1/article?query=title:afghanistan comments:y&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&?callback=?', 
+        //     function(json){ 
+        //         searchResponse = json.responseText;
+        //         console.log('it worked!!')});
+        // console.log(NYTsearch)
+        //=============================
+        
 
+
+        NYTsearch=$.getJSON('http://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?callback=?', 
+            function(json){ 
+                // searchResponse = json.responseText;
+                console.log('it worked!!')});
+        console.log(NYTsearch)
+        //==============================
+
+        // var URL = "http://api.nytimes.com/svc/search/v1/article?format=json&query=title:afghanistan comments:y&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&";
+        // var query= ""
+        
+        // function alertResponse(data, status) {
+        //     alert("data: " + data + ", status: " + status);
+        // }
+        // $.ajax({
+        //     url: URL,
+        //     dataType: 'jsonp',
+        //     jsonp: false,            
+        //     jsonpCallback: 'alertResponse',
+        // });
+        //==================================
+        // var baseURL= "http://api.nytimes.com/svc/search/v1/article";
+        // var apikey= "f6fcb7d8529cc6f75a5686e2496a3348:3:66738105";
+        // // construct the uri with our apikey 
+        // var articleSearchUrl = "http://api.nytimes.com/svc/search/v1/article&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105";
+        // // baseURL + '&api-key=' + apikey; 
+        // var query = 'title:afghanistan comments:y'; 
+        // var rank = "newest";
+        
+        //     $.ajax({ 
+        //         url: articleSearchUrl + '&query=' + encodeURI(query),
+        //         // + '&rank' + encodeURI(rank),
+        //         dataType: "jsonp", 
+        //         success: document.write("got through this"), 
+        //         //searchCallback 
+        //     }); 
+        //====================================
+
+
+                // JSON.stringify();
+                // articleObj=$.parseJSON(json.responseText);
+                // console.log("test");
+                // console.log(json);
+        });
+        // articleObj=$.parseJSON(NYTsearch.responseText);
+        // console.log(json);
+        // console.log(NYTsearch);
+        // console.log(articleObj);
+
+
+<<<<<<< HEAD
+        // $(document).ready(function() {
+        //      $("#jsonpbtn").click(function() {
+        //         var surl =  "http://www.fbloggs.com/sandbox/jsonp.php?callback=?";
+        //         var me = $(this);
+        //         $.getJSON(surl,  function(rtndata) {
+        //             me.feedback(rtndata.message, {duration: 4000, above: true});
+        //         });
+        //      });
+        //     });
+=======
         $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice')
+>>>>>>> c7ab864616efe443eabb244001c9e91dc110cda6
 
-        //using call back??
+        //using call back?? this doesnt work either
         // $.getJSON(NYT_API+'?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key='+TimesSearchAPIkey+'?callback=?', 
         //     function(json) {
         //         articleObj=$.parseJSON(json.responseText);
@@ -33,8 +106,10 @@
         //         }
         //     }
         // );
-            
         
+<<<<<<< HEAD
+    // });
+=======
     });
 	*/
 	$(document).ready(function()
@@ -50,6 +125,7 @@
 	return false;
 	});
 	});
+>>>>>>> c7ab864616efe443eabb244001c9e91dc110cda6
 
     </script>
 </head>
@@ -58,6 +134,7 @@
     <div class="container">
         <h1>Testing NYT API</h1>
         <p>Results are:<p>
+            <input type="submit" name="jsonpbtn" id="#jsonpbtn"
             <div id="articles">
             </div>
     </div>
