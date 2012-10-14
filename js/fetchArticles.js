@@ -4,7 +4,7 @@ $(document).ready(function(){
      console.log('fetchArticles.js loaded.. ')
     //=============================TRY using proxy
     //declare a variable that holds Quora array of tags
-    var quoraTags=['title:ice','title:fire','title:mining'];
+    var quoraTags=['title:ice','title:fire','title:mining','title:obama','title:potter'];
     //loop through tags and get articles realted to each 
     for (var tagIndex in quoraTags){
         //put current tag in a variable
