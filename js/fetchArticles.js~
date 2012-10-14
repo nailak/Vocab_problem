@@ -20,7 +20,6 @@ $(document).ready(function(){
 
 
 	function getArticlesNYTimes(){
-
      console.log('fetchArticles.js loaded.. ')
     //=============================TRY using proxy
     //declare a variable that holds Quora array of tags

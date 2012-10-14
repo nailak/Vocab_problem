@@ -5,11 +5,12 @@
   "description": "Vocabulary Problem with Times Tags and Quora.",
   "browser_action": {
     "default_icon": "icon.png",
-	"default_popup": "popup.html"
+	"default_popup": "NYTimes.html"
   },
   "permissions": [
-    "tabs", "http://www.quora.com/*", "http://*/*"
+    "tabs", "http://www.quora.com/*", "http://people.ischool.berkeley.edu/~nkhalawi/"
   ],
+  "content_security_policy": "script-src 'self' http://people.ischool.berkeley.edu/~nkhalawi/; object-src 'self'",
   "content_scripts" : [
     {
       "matches" : [ "http://*/*" ],
