@@ -42,7 +42,7 @@ $(document).ready(function(){
                     curArt=articles[x];
                     // console.log(curArt);
                     console.log(x+') ARTICLE : '+curArt.title);
-                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h3><a href="'+curArt.url +'">' + curArt.title + '</a></h3><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '</p></div>');
+                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><a href="'+curArt.url +'">' + curArt.title + '</a><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></br></div>');
                     // $('#div').last().append('<div id="div'+x+'""><h3><a href="'+curArt.url +'">' + curArt.title + '</a></h3><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '</p></div>');
             
                     x++;//increment article counter
