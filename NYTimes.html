@@ -1,168 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
-<head id='head'>
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="Access-Control-Allow-Origin" content="*">
-	<LINK REL=StyleSheet HREF="TheCSS.css" TYPE="text/css">
+    <LINK REL=StyleSheet HREF="css/TabsCSS.css" TYPE="text/css">
+	
+		<LINK REL=StyleSheet HREF="css/bootstrap.min.css" TYPE="text/css">
+			
     <title>Vocabulary Prob</title>
-   <!--  // <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-    // <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
-    --> 
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-
-    <!-- // <script type="text/javascript" src=".js"></script> -->
-    <!-- <link rel="stylesheet" href="stylesheets/base.css"> -->
-    <script type="text/javascript">
-	/*
-    $(document).ready(function(){
-        var TimesTagsAPIkey='a8db8012217ff6a0cf8a4ab616210b50:12:66738105';
-        var TimesSearchAPIkey='f6fcb7d8529cc6f75a5686e2496a3348:3:66738105';
-        var NYT_API='http://api.nytimes.com/svc/search/v1/article';
-        var articlesSearch= {};
-
-        //sample get articles - must inspect in console 
-         // $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105')
-         var searchResponse;
-        // NYTsearch=$.getJSON('http://api.nytimes.com/svc/search/v1/article?query=title:afghanistan comments:y&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&?callback=?', 
-        //     function(json){ 
-        //         searchResponse = json.responseText;
-        //         console.log('it worked!!')});
-        // console.log(NYTsearch)
-        //=============================
-        
-
-
-        NYTsearch=$.getJSON('http://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?callback=?', 
-            function(json){ 
-                // searchResponse = json.responseText;
-                console.log('it worked!!')});
-        console.log(NYTsearch)
-        //==============================
-
-        // var URL = "http://api.nytimes.com/svc/search/v1/article?format=json&query=title:afghanistan comments:y&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&";
-        // var query= ""
-        
-        // function alertResponse(data, status) {
-        //     alert("data: " + data + ", status: " + status);
-        // }
-        // $.ajax({
-        //     url: URL,
-        //     dataType: 'jsonp',
-        //     jsonp: false,            
-        //     jsonpCallback: 'alertResponse',
-        // });
-        //==================================
-        // var baseURL= "http://api.nytimes.com/svc/search/v1/article";
-        // var apikey= "f6fcb7d8529cc6f75a5686e2496a3348:3:66738105";
-        // // construct the uri with our apikey 
-        // var articleSearchUrl = "http://api.nytimes.com/svc/search/v1/article&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105";
-        // // baseURL + '&api-key=' + apikey; 
-        // var query = 'title:afghanistan comments:y'; 
-        // var rank = "newest";
-        
-        //     $.ajax({ 
-        //         url: articleSearchUrl + '&query=' + encodeURI(query),
-        //         // + '&rank' + encodeURI(rank),
-        //         dataType: "jsonp", 
-        //         success: document.write("got through this"), 
-        //         //searchCallback 
-        //     }); 
-        //====================================
-
-
-                // JSON.stringify();
-                // articleObj=$.parseJSON(json.responseText);
-                // console.log("test");
-                // console.log(json);
-        });
-        // articleObj=$.parseJSON(NYTsearch.responseText);
-        // console.log(json);
-        // console.log(NYTsearch);
-        // console.log(articleObj);
-
-
-<<<<<<< HEAD
-        // $(document).ready(function() {
-        //      $("#jsonpbtn").click(function() {
-        //         var surl =  "http://www.fbloggs.com/sandbox/jsonp.php?callback=?";
-        //         var me = $(this);
-        //         $.getJSON(surl,  function(rtndata) {
-        //             me.feedback(rtndata.message, {duration: 4000, above: true});
-        //         });
-        //      });
-        //     });
-=======
-        $.getJSON('http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice')
->>>>>>> c7ab864616efe443eabb244001c9e91dc110cda6
-
-        //using call back?? this doesnt work either
-        // $.getJSON(NYT_API+'?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key='+TimesSearchAPIkey+'?callback=?', 
-        //     function(json) {
-        //         articleObj=$.parseJSON(json.responseText);
-        //         articles=articleObj.results;
-        //         for (var item in articles){
-        //             $('#articles').append('<span>'+articles[item].title+'</span>')
-        //         }
-        //     }
-        // );
-        
-<<<<<<< HEAD
-    // });
-=======
-    });
-	*/
-	$(document).ready(function()
-	{
-	$('.TabContent a').live('click', function() {
-	//FIRST, CHANGE ALL TABS TO NORMAL-- children() of TabContent is the <a> tag
-	$('.TabContent').children().each(function(){
-									 $(this).removeClass("Selected").addClass("Unselected");
-									 });
-	//NEXT, CHNAGE STYLE OF SELECTED TAB
-	$(this).removeClass("Unselected").addClass("Selected");
+     <script type="text/javascript" src="js/Tabs.js"></script>
+	 <script type="text/javascript" src="js/bootstrap.min.js"></script>
 	
-	return false;
-	});
-	});
->>>>>>> c7ab864616efe443eabb244001c9e91dc110cda6
-
-    </script>
 </head>
 
 <body id="WholePageContent">
-    <div class="container">
-        <h1>Testing NYT API</h1>
-        <p>Results are:<p>
-            <input type="submit" name="jsonpbtn" id="#jsonpbtn"
-            <div id="articles">
-            </div>
-    </div>
+	  	<h1>Name of Project (TBD)</h1>
+        <h5>Here are top 5 links to articles that match the tags in Quora</h5>
 	
 	<!--Tab Structure-->
-	<ul class="Tabs">
-	<li class="TabContent" ><a href="" class="Selected">Tag1 Word</a> </li>
-	<li class="TabContent" ><a href="" class="Unselected">Tag2 Word</a> </li>
-	<li class="TabContent" ><a href="" class="Unselected">Tag3 Word</a> </li>
-	</ul>
+	<div id="Tabs">
+	<ul class="nav nav-pills">
+  <li class="active">
+    <a href="" id="tag1">Tag1</a>
+  </li>
+  <li><a href="" id="tag2">Tag2</a></li>
+  <li><a href="" id="tag3">Tag3</a></li>
+</ul>
+</div>
 	
-	<!--"Frame" is the box where the content of each tab is displayed-->
-	<div id="Frame">
-	<p>Here are top 5 links to articles that match the tags in Quora</p>
+	<!--"Box" is the box where the content of each tab is displayed-->
+	<div id="Box">
 	
-	<div class="Title">
-	<a href="" class="TitleLink" target="_blank">This is the Title linked to the actual article in NY Times</a>
+	<div id="div1">
+	<a href="">DIV1:One:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
+	
+	
+	
+	<a href="">Two:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
+	
+	
+	
+	<a href="">Three:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
 	</div>
 	
-	<div class="BodySummary">
-	This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text. 
+	<div id="div2">
+	<a href="">DIV2:One:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
+	
+	
+	
+	<a href="">Two:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
+	
+	
+	
+	<a href="">Three:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
 	</div>
 	
-	<div class="Author">
-	By: Author name
-	</div>
+	
+	<div id="div3">
+	<a href="">DIV3:One:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
+	
+	
+	<a href="">Two:This is the Title linked to the actual article in NY Times</a>
+	
+	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+
+	<i>By: Author name</i>
 	
 	</div>
+	
+	</div> <!-- End of "Box" div-->
 	
 		
 </body>
