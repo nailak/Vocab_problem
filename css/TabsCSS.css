@@ -5,16 +5,17 @@ html{
 height:100%;
 width:45%; }
 
-#WholePageContent{
+/*#WholePageContent{
 font-family:"cambria";
-}
+}*/
 
 #WholePageContent h1, #WholePageContent h5{
 text-align:center;}
 
 #Box{
 /* this is the css class for the content displayed in each tab */
-padding: 0 0;
+padding: 5px;
+margin:5px;
 clear:both;
 overflow:hidden;
 line-height:19px;

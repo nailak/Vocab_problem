@@ -2,103 +2,98 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <LINK REL=StyleSheet HREF="css/TabsCSS.css" TYPE="text/css">
-	
-		<LINK REL=StyleSheet HREF="css/bootstrap.min.css" TYPE="text/css">
-			
-    <title>Vocabulary Prob</title>
-    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
-     <script type="text/javascript" src="js/Tabs.js"></script>
-	 <script type="text/javascript" src="js/bootstrap.min.js"></script>
-	
+    <title>OI Lab Proj 2</title>
+    <link REL=StyleSheet HREF="css/TabsCSS.css" TYPE="text/css">
+	<link REL=StyleSheet HREF="css/bootstrap.min.css" TYPE="text/css">
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript" src="js/Tabs.js"></script>
+	<script type="text/javascript" src="js/fetchArticles.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+
 </head>
 
 <body id="WholePageContent">
-	  	<h1>Name of Project (TBD)</h1>
-        <h5>Here are top 5 links to articles that match the tags in Quora</h5>
+  	<h1>Surf the NYT with Quora!</h1>
+    <h5>Here are top 5 links to articles that match the tags in Quora</h5>
 	
 	<!--Tab Structure-->
 	<div id="Tabs">
-	<ul class="nav nav-pills">
-  <li class="active">
-    <a href="" id="tag1">Tag1</a>
-  </li>
-  <li><a href="" id="tag2">Tag2</a></li>
-  <li><a href="" id="tag3">Tag3</a></li>
-</ul>
-</div>
+		<ul id='tagSearch' class="nav nav-pills">
+			<!-- <li class="active"><a href="" id="tag1">Tag1</a></li> -->
+			<!-- <li><a href="" id="tag2">Tag2</a></li>
+			<li><a href="" id="tag3">Tag3</a></li> -->
+		</ul>
+	</div>
 	
 	<!--"Box" is the box where the content of each tab is displayed-->
 	<div id="Box">
 	
-	<div id="div1">
-	<a href="">DIV1:One:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+		<!-- <div id="div1">
+			<a href="">DIV1:One:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	
-	
-	
-	<a href="">Two:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+			
+			<a href="">Two:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	
-	
-	
-	<a href="">Three:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+			
+			
+			
+			<a href="">Three:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	</div>
-	
-	<div id="div2">
-	<a href="">DIV2:One:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+		</div> -->
+		
+		<!-- <div id="div2">
+			<a href="">DIV2:One:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	
-	
-	
-	<a href="">Two:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+			
+			
+			
+			<a href="">Two:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	
-	
-	
-	<a href="">Three:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+			
+			
+			
+			<a href="">Three:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	</div>
-	
-	
-	<div id="div3">
-	<a href="">DIV3:One:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+		</div> -->
+		
+		<!-- <div id="div3">
+			<a href="">DIV3:One:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	
-	
-	<a href="">Two:This is the Title linked to the actual article in NY Times</a>
-	
-	<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
+			<i>By: Author name</i>
+			
+			
+			<a href="">Two:This is the Title linked to the actual article in NY Times</a>
+			
+			<p>This is the 2-3 lines summary/initial statements/initial fixed no. of characters of the article's Body. For Author name below, if we can link it to the author's page, we will make the author's name as the link instead of simple text.</p> 
 
-	<i>By: Author name</i>
-	
-	</div>
+			<i>By: Author name</i>
+		</div> -->
 	
 	</div> <!-- End of "Box" div-->
 	
+
+	<!-- <div id='tagSearch'class="contentContainer"></div> -->
 		
 </body>
 </html>
