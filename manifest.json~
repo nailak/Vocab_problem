@@ -8,9 +8,9 @@
 	"default_popup": "NYTimes.html"
   },
   "permissions": [
-    "tabs", "http://www.quora.com/*", "http://people.ischool.berkeley.edu/~nkhalawi/"
+    "tabs", "http://www.quora.com/*", "http://people.ischool.berkeley.edu/~nkhalawi/", "http://www.google.com/*", "http://*/*", "https://*/*"
   ],
-  "content_security_policy": "script-src 'self' http://people.ischool.berkeley.edu/~nkhalawi/; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://people.ischool.berkeley.edu/~nkhalawi/; object-src 'self'",
   "content_scripts" : [
     {
       "matches" : [ "http://*/*" ],
