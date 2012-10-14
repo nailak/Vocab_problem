@@ -21,7 +21,7 @@ $(document).ready(function(){
     
     function getArticles(currentTag,currentIndex){ 
 
-        $.getJSON('http://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?tagname='+currentTag+'&callback=?', 
+        $.getJSON('https://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?tagname='+currentTag+'&callback=?', 
             function(json){ 
                 // parse returned object as JSON
                 articlesObj=$.parseJSON(json.xml);
