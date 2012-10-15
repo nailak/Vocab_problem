@@ -1,5 +1,7 @@
-var tagList = [];
-var getArticlesTags = [];
+var tagList = [];		// a list of Quora tags from the webpage
+var getTags = []; 		// we're getting the articles for these tags
+						// (same as tagList, but with duplicates removed
+var tfTags = [];		// tags converted to Times Format
 var quoraTags = [];
 var requestNum = 0;
 
@@ -42,61 +44,54 @@ $(document).ready(function(){
 			
 			function TLTest(){
 				console.log(tagList);
+				removeDuplicates(logGetTags);
 			}
 
-			function getTagsFromMessage(callback){
-					for (var i = 0; i < tags.length; i++){
-						
-						var tagObj = $(tags[i]);
-						console.log("TAG OBJECT");
-						console.log(tagObj);
+			function removeDuplicates(callback){
+				for (var i = 0; i < tagList.length; i++){
 
-						var tag = returnMe(tagObj.html());
-						
-						if (tagList.length == 0){
-							tagList.push(tag);
-							console.log(tag + " ADDED AT BEGINNING");
-							console.log(tagList);
-						}
-						else {
-							// if the tag isn't already there, add it
-							for (var j = 0; j < tagList.length; j++){
-								// if the tag is already in the list
-								if (tagList[j] == tag){
-									// continue without adding
-									console.log(tag + " NOT ADDED b/c of DUPLICATE");
-									console.log(tagList);
-									break;
-								} 
-								// otherwise, if the tagList item is larger, insert before
-								else if (tagList[j] > tag){
-									tagList = tagList.splice(j, 0, tag);
-									console.log(tag + " ADDED");
-									console.log(tagList);
-									break;
-								}
-								// otherwise, if you've reached the end of the list, add it there
-								else if (j == tagList.length - 1){
-									tagList = tagList.push(tag);
-									console.log(tag + " ADDED AT END");
-									console.log(tagList);
-									break;
-								}
-								else; // otherwise, go on and check next tagList item
-							}
-							
-						}
-						console.log(tagList);
-						lastCallback();
+					if (getTags.length == 0){
+						getTags.push(tagList[i]);
 					}
+					else { // Otherwise, try to find a place for tag in getTags list.
+						
+						// for every item already in the list
+						for (var j = 0; j < getTags.length; j++){
+							// if it's already in the list, skip it
+							if (getTags[j] == tagList[i]){
+								break;
+							}
+							// otherwise, insert it before the element that is larger than it
+							else if (getTags[j] > tagList[i]){
+								getTags.splice(j, 0, tagList[i]);
+								break;
+							}
+							// otherwise, if you've reached the end, add it there
+							else if (j == getTags.length - 1){
+								getTags.push(tagList[i]);
+							}
+							else; // otherwise keep searching
+						} // end of for loop
+					} // end of else
+				}
 
+				callback();		
 			}
-			function lastCallback(){
-						console.log(tagList);
-						if (tagList.length > 0){
-							getArticlesTags = returnMe(tagList);
-							getArticlesNYTimes();
-						}
+			
+			function logGetTags(){
+				console.log(getTags);
+				convertToTimesFormat(getArticlesNYTimes);
+			}
+
+			function convertToTimesFormat(callback){
+				for (var i = getTags.length - 1; i >= 0; i--){
+					// quoraTags is what we're passing to the NY Times API, formatted accordingly
+					var tag = "title:" + getTags[i];
+					
+					//tag.replace(" ", "%20");
+					quoraTags.push(tag);
+				}
+				callback();
 			}
 
 		}
@@ -111,17 +106,10 @@ function getArticlesNYTimes(){
     //=============================TRY using proxy
     //declare a variable that holds Quora array of tags
     console.log("inside get articles NY Times");
-	console.log(getArticlesTags);
-
-	// for each article in getArticlesTags
-	for (var i = 0; i < getArticlesTags.length; i++){
-		quoraTags.push(getArticlesTags[i].prepend("title:"));
-	}
-	console.log(getArticlesTags);
-	quoraTags = getArticlesTags;
+	console.log(quoraTags);
 
     //var quoraTags=['title:ice','title:fire'];
-    //loop through tags and get articles realted to each 
+    //loop through tags and get articles related to each 
     for (var tagIndex in quoraTags){
         //put current tag in a variable
         tagname=quoraTags[tagIndex];
