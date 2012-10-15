@@ -1,32 +1,126 @@
+var tagList = [];
+var getArticlesTags = [];
+var quoraTags = [];
+var requestNum = 0;
 
+function returnMe(a){
+	return a;
+}
 
 $(document).ready(function(){
-
+	requestNum = 0;
 	// Get tagnames from the page
 	
 	chrome.tabs.executeScript(null, {file: "contentscript.js"});
-		  //document.getElementById("extensionpopupcontent").innerHTML = variableDefinedInContentScript;
-		  // window.close();
+
 
 	chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
-		if (sender.tab){
-			console.log(request.greeting);
-			var tags = request.greeting.html();
-			console.log(tags);
-			sendResponse({farewell: "goodbye"});
+		if (sender.tab && requestNum == 0){
+
+
+			console.log("Request number: " + requestNum);
+			requestNum++;
+			getTagsFromPage(getTagsFromMessage);
+
+			function getTagsFromPage(callback){
+					
+					console.log(request.greeting);
+					var tags = $(request.greeting);
+					console.log(tags);
+					var tagLength = tags.length;
+					console.log(tagLength);
+
+					for (var i = 0; i < tags.length; i++){
+						var tagObj = $(tags[i]);
+						console.log("TAG OBJECT");
+						console.log(tagObj);
+						tagList.push(tagObj.html());
+					}
+					
+					//callback();
+			}
+			
+			function TLTest(){
+				console.log(tagList);
+			}
+
+			function getTagsFromMessage(callback){
+					for (var i = 0; i < tags.length; i++){
+						
+						var tagObj = $(tags[i]);
+						console.log("TAG OBJECT");
+						console.log(tagObj);
+
+						var tag = returnMe(tagObj.html());
+						
+						if (tagList.length == 0){
+							tagList.push(tag);
+							console.log(tag + " ADDED AT BEGINNING");
+							console.log(tagList);
+						}
+						else {
+							// if the tag isn't already there, add it
+							for (var j = 0; j < tagList.length; j++){
+								// if the tag is already in the list
+								if (tagList[j] == tag){
+									// continue without adding
+									console.log(tag + " NOT ADDED b/c of DUPLICATE");
+									console.log(tagList);
+									break;
+								} 
+								// otherwise, if the tagList item is larger, insert before
+								else if (tagList[j] > tag){
+									tagList = tagList.splice(j, 0, tag);
+									console.log(tag + " ADDED");
+									console.log(tagList);
+									break;
+								}
+								// otherwise, if you've reached the end of the list, add it there
+								else if (j == tagList.length - 1){
+									tagList = tagList.push(tag);
+									console.log(tag + " ADDED AT END");
+									console.log(tagList);
+									break;
+								}
+								else; // otherwise, go on and check next tagList item
+							}
+							
+						}
+						console.log(tagList);
+						lastCallback();
+					}
+
+			}
+			function lastCallback(){
+						console.log(tagList);
+						if (tagList.length > 0){
+							getArticlesTags = returnMe(tagList);
+							getArticlesNYTimes();
+						}
+			}
+
 		}
 	  else
 		sendResponse({}); // snub them.
 	});
 	
-	getArticlesNYTimes();
 
-	function getArticlesNYTimes(){
+function getArticlesNYTimes(){
 
      console.log('fetchArticles.js loaded.. ')
     //=============================TRY using proxy
     //declare a variable that holds Quora array of tags
-    var quoraTags=['title:ice','title:fire','title:mining','title:obama','title:potter'];
+    console.log("inside get articles NY Times");
+	console.log(getArticlesTags);
+
+	// for each article in getArticlesTags
+	for (var i = 0; i < getArticlesTags.length; i++){
+		quoraTags.push(getArticlesTags[i].prepend("title:"));
+	}
+	console.log(getArticlesTags);
+	quoraTags = getArticlesTags;
+
+    //var quoraTags=['title:ice','title:fire'];
     //loop through tags and get articles realted to each 
     for (var tagIndex in quoraTags){
         //put current tag in a variable

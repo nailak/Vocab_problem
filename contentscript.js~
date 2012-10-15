@@ -16,7 +16,7 @@ console.log("String form");
 console.log(myMessageString);
 */
 var myMessageString = "hello";
-chrome.extension.sendRequest({greeting: myMessage}, function(response) {
+chrome.extension.sendRequest({greeting: str}, function(response) {
 	console.log("Sent Request");
   console.log(response.farewell);
 });
