@@ -20,7 +20,7 @@ $(document).ready(function(){
 		if (sender.tab && requestNum == 0){
 
 
-			console.log("Request number: " + requestNum);
+			console.log("[[[ STEP 1 ]]] Getting Quora Tags: Request number: " + requestNum);
 			requestNum++;
 			getTagsFromPage(TLTest);
 
@@ -43,7 +43,7 @@ $(document).ready(function(){
 			}
 			
 			function TLTest(){
-				console.log(tagList);
+				console.log('TAG LIST IS: '+tagList);
 				removeDuplicates(logGetTags);
 			}
 
@@ -88,8 +88,10 @@ $(document).ready(function(){
 					// quoraTags is what we're passing to the NY Times API, formatted accordingly
 					var tag = "title:" + getTags[i];
 					
-					//tag.replace(" ", "%20");
+					//tag = tag.replace(" ", "%20");
 					quoraTags.push(tag);
+					//console.log("TAG PRINTING ");
+					//console.log(tag);
 				}
 				callback();
 			}
@@ -102,27 +104,35 @@ $(document).ready(function(){
 
 function getArticlesNYTimes(){
 
-     console.log('fetchArticles.js loaded.. ')
-    //=============================TRY using proxy
+     console.log('[[[ STEP 2 ]]] Fetch NYT Articles..inside get articles NY Times ')
     //declare a variable that holds Quora array of tags
-    console.log("inside get articles NY Times");
 	console.log(quoraTags);
 
     //loop through tags and get articles related to each 
     for (var tagIndex in quoraTags){
         //put current tag in a variable
         tagname=quoraTags[tagIndex];
-        console.log(tagname);   
+        console.log('Tag name: '+tagname);   
         
         // $('.searchContainer').append(getArticles(tagname,tagIndex));
         
         //call function that will use API to search for this tag
-        getArticles(tagname,tagIndex);
-        console.log('END TAG FORLOOP ROUND '+tagIndex);
+        getArticles(tagname,tagIndex,hideDivsNow);
+        console.log('End tag loop round: '+tagIndex+' >> Calling JSON..');
         tagIndex++; //move on to next tag in array
     }
-    
-    function getArticles(currentTag,currentIndex){ 
+
+    function HideAllDivs(){
+		$('#Box').children().each(function(){
+			$(this).hide();
+		});
+	}
+    function hideDivsNow(){
+    	HideAllDivs();
+		$('#div0').show();
+		console.log("Inside callback function hideDivsNow")
+    }
+    function getArticles(currentTag,currentIndex,callback){ 
 
         $.getJSON('https://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?tagname='+currentTag+'&callback=?', 
             function(json){ 
@@ -130,14 +140,26 @@ function getArticlesNYTimes(){
                 articlesObj=$.parseJSON(json.xml);
                 //get the article objects only ..as an array of article objects. 
                 articles=articlesObj.results;
-                console.log(currentIndex+') ===JSON FOR TAG=== :  '+currentTag);
+                console.log(currentIndex+') JSON FOR TAG=== :  '+currentTag);
                 // $('#tagSearch').append('<div id="box'+currentIndex+'" class="searchContainer"><h1 class="tagName">'+currentTag+'</h1><div class="tagArticles"></div><div>');
                 tag = currentTag;
 		//tag = tag.substring(6,currentTag.length); // this line removes "title:" from "title:(nameoftag)"
 				tag = currentTag.substring(6, currentTag.length);
-				$('#tagSearch').append('<li><a href="" id="tag'+currentIndex +'">'+tag+'</a></li>');
-                $('#Box').append('<div id="div'+currentIndex+'" class="tagArticles"></div>');
-                
+				// $('#tagSearch').append('<li ><a href="" id="tag'+currentIndex +'">'+tag+'</a></li>');
+				if (currentIndex == 0){
+					$('#tagSearch').append('<li class="active"><a id="tag0" href="">'+tag+'</a></li>');
+					$('#Box').append('<div id="div0" class="tagArticles"></div>');
+					// $('#div0').show();
+					console.log('WE ARE APPENDING INDEX ZERO TAG AND DIV')
+
+				}
+				else{
+					console.log('WE ARE APPENDING REMIANING INDEX TAGS AND DIVS')
+					$('#tagSearch').append('<li ><a id="tag'+currentIndex +'" href="">'+tag+'</a></li>');
+					$('#Box').append('<div id="div'+currentIndex+'" class="tagArticles"></div>');
+
+				}
+			    
                 console.log(articles);
 
                 var x=0;//article counter
@@ -146,15 +168,14 @@ function getArticlesNYTimes(){
                 // $('.tagArticles').append('=[Get - ');
                 $(articles).each(function(){
                     curArt=articles[x];
-                    // console.log(curArt);
-                    console.log(x+') ARTICLE : '+curArt.title);
-                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><a href="'+curArt.url +'">' + curArt.title + '</a><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></br></div>');
+                    // console.log(x+') ARTICLE : '+curArt.title);
+                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><a href="'+curArt.url +'">' + curArt.title + '</a></h5><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></br></div>');
                     // $('#div').last().append('<div id="div'+x+'""><h3><a href="'+curArt.url +'">' + curArt.title + '</a></h3><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '</p></div>');
             
                     x++;//increment article counter
                 });
                 // $('.tagArticles').append('- End]=');
-                
+                callback();
             }
         );
     }

@@ -2,10 +2,13 @@
 $(document).ready(function()
 	{
 	//HIDE ALL DIVS
-	HideAllDivs();
+	//HideAllDivs();
 										 
 	//SHOW FIRST DIV BY DEFAULT
-	$('#div0').show();
+	// $('#div0').show();
+	// $('#tag0').parent().addClass("active");
+	// console.log('THIS IS THE PARENT-12------------------------------------');
+	// console.log($('#tag1').parent());
 	
 	//CHANGE HEIGHT OF "BOX" AS PER CONTENT
 	ChangeBoxHeight('#div0');
@@ -22,7 +25,7 @@ $(document).ready(function()
 	}
 
 	$('#Tabs a').live('click', function() {
-	// $("#Tabs li").on('click', function(){
+	// $("#Tabs a").on('click', function(){
 		//FIRST, CHANGE ALL TABS TO NORMAL
 		$('.nav-pills li').each(function(){
 			$(this).removeClass("active");
