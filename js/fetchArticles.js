@@ -108,7 +108,6 @@ function getArticlesNYTimes(){
     console.log("inside get articles NY Times");
 	console.log(quoraTags);
 
-    //var quoraTags=['title:ice','title:fire'];
     //loop through tags and get articles related to each 
     for (var tagIndex in quoraTags){
         //put current tag in a variable
@@ -135,7 +134,8 @@ function getArticlesNYTimes(){
                 // $('#tagSearch').append('<div id="box'+currentIndex+'" class="searchContainer"><h1 class="tagName">'+currentTag+'</h1><div class="tagArticles"></div><div>');
                 tag = currentTag;
 		//tag = tag.substring(6,currentTag.length); // this line removes "title:" from "title:(nameoftag)"
-		$('#tagSearch').append('<li><a href="" id="tag'+currentIndex +'">'+tag+'</a></li>');
+				tag = currentTag.substring(6, currentTag.length);
+				$('#tagSearch').append('<li><a href="" id="tag'+currentIndex +'">'+tag+'</a></li>');
                 $('#Box').append('<div id="div'+currentIndex+'" class="tagArticles"></div>');
                 
                 console.log(articles);
