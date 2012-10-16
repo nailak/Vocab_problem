@@ -3,49 +3,57 @@
 
 html{
 height:100%;
-width:45%; }
+width:400px; }
 
 /*#WholePageContent{
 font-family:"cambria";
 }*/
 
-#WholePageContent h1, #WholePageContent h5{
-text-align:center;}
+#WholePageContent{
 
+}
+img, #headerTitle{
+display:inline;
+font-family: "Georgia", "Helvetica", "serif";
+}
+#headerContainer{
+border-bottom:2px solid black;
+}
 #Box{
 /* this is the css class for the content displayed in each tab */
-padding: 5px;
-margin:5px;
+margin: 0px;
 clear:both;
-overflow:hidden;
+/*overflow:hidden;*/
 line-height:19px;
 position: relative;
 padding:2% 2% 2% 2%;
-height: 500px;
-width:98%;
+width:100%;
 overflow: hidden;
-border:1px solid DarkBlue;
+border:1px solid #CCC;
 top:-2px;
 background-color:AliceBlue;
- /* The following four lines are to make the top left and top right corners of each tab rounded. */
--moz-border-radius-topleft: 4px;
+ /* The following four lines are to make the top /left and top right corners of each tab rounded. */
+/*-moz-border-radius-topleft: 4px;
 border-top-left-radius: 4px;
 -moz-border-radius-topright: 4px;
-border-top-right-radius: 4px;
+border-top-right-radius: 4px;*/
+}
+h2 { text-align: center;
 }
 
+ul{margin: 0px}
 #Box a {
  font-weight:bolder;
  border:0px;
  text-decoration:none;
- color:Chocolate;
+ /*color:Chocolate;*/
 margin-left: 2%;
 margin-right:2%;
 }
  
-#Box a:active{
+/*#Box a:active{
 color:Chocolate;
-}
+}*/
  
 #Box p{
  margin-left:5%;
@@ -62,7 +70,6 @@ text-transform:capitalize;
 margin-top:0%;
 /*NEED "DISPLAY:BLOCK" TO MAKE MARGINS WORK*/
 display:block;
-margin-bottom:2%;
 }
  
 .nav .nav-pills{

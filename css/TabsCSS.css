@@ -12,7 +12,13 @@ font-family:"cambria";
 #WholePageContent{
 
 }
-
+img, #headerTitle{
+display:inline;
+font-family: "Georgia", "Helvetica", "serif";
+}
+#headerContainer{
+border-bottom:2px solid black;
+}
 #Box{
 /* this is the css class for the content displayed in each tab */
 margin: 0px;
@@ -21,13 +27,13 @@ clear:both;
 line-height:19px;
 position: relative;
 padding:2% 2% 2% 2%;
-height: 500px;
-width:96%;
+
+width:100%;
 overflow: hidden;
-border:1px solid DarkBlue;
+border:1px solid #CCC;
 top:-2px;
 background-color:AliceBlue;
- /* The following four lines are to make the top left and top right corners of each tab rounded. */
+ /* The following four lines are to make the top /left and top right corners of each tab rounded. */
 /*-moz-border-radius-topleft: 4px;
 border-top-left-radius: 4px;
 -moz-border-radius-topright: 4px;
