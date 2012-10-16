@@ -136,46 +136,39 @@ function getArticlesNYTimes(){
 
         $.getJSON('https://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?tagname='+currentTag+'&callback=?', 
             function(json){ 
-                // parse returned object as JSON
-                articlesObj=$.parseJSON(json.xml);
-                //get the article objects only ..as an array of article objects. 
-                articles=articlesObj.results;
-                console.log(currentIndex+') JSON FOR TAG=== :  '+currentTag);
-                // $('#tagSearch').append('<div id="box'+currentIndex+'" class="searchContainer"><h1 class="tagName">'+currentTag+'</h1><div class="tagArticles"></div><div>');
-                tag = currentTag;
-		//tag = tag.substring(6,currentTag.length); // this line removes "title:" from "title:(nameoftag)"
-				tag = currentTag.substring(6, currentTag.length);
-				// $('#tagSearch').append('<li ><a href="" id="tag'+currentIndex +'">'+tag+'</a></li>');
-				if (currentIndex == 0){
+                
+                articlesObj=$.parseJSON(json.xml);// parse returned object as JSON
+                articles=articlesObj.results;//get the article objects as an array 
+				tag = currentTag.substring(6, currentTag.length);//remove 'title:' from tag
+				console.log('Status: appending tag number '+currentIndex+' - '+tag);
+
+				//if statement to identify 'active' tag as the one with index 0
+				if (currentIndex == 0){//append first tag and set class to 'active' so its seleceted 
 					$('#tagSearch').append('<li class="active"><a id="tag0" href="">'+tag+'</a></li>');
 					$('#Box').append('<div id="div0" class="tagArticles"></div>');
-					// $('#div0').show();
-					console.log('WE ARE APPENDING INDEX ZERO TAG AND DIV')
-
 				}
-				else{
-					console.log('WE ARE APPENDING REMIANING INDEX TAGS AND DIVS')
+				else{ //append tag without 'active' class so its not seleceted
 					$('#tagSearch').append('<li ><a id="tag'+currentIndex +'" href="">'+tag+'</a></li>');
 					$('#Box').append('<div id="div'+currentIndex+'" class="tagArticles"></div>');
-
 				}
-			    
-                console.log(articles);
-
-                var x=0;//article counter
-                // var articleID=1;
-
-                // $('.tagArticles').append('=[Get - ');
-                $(articles).each(function(){
-                    curArt=articles[x];
-                    // console.log(x+') ARTICLE : '+curArt.title);
-                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><a href="'+curArt.url +'">' + curArt.title + '</a></h5><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></br></div>');
-                    // $('#div').last().append('<div id="div'+x+'""><h3><a href="'+curArt.url +'">' + curArt.title + '</a></h3><p> By: ' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '</p></div>');
-            
-                    x++;//increment article counter
-                });
-                // $('.tagArticles').append('- End]=');
-                callback();
+			    console.log('Status: appending tag articles ..');
+                
+			    //error checkin if there are no articles	
+                if(articlesObj.results.length == 0){
+                	console.log("THERE ARE NO ARTICLES");
+                	$('.tagArticles').last().append('<div id="" class="article"><h5>No articles found</h5></div>');
+                }
+                else{console.log('ARTICLES FOUND')
+	                //append all articles for current tag
+	                var x=0;//article counter
+	                $(articles).each(function(){
+	                    curArt=articles[x];
+	                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><a href="'+curArt.url +'">' + curArt.title + '</a></h5><p>' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></div>');
+	                    x++;//increment article counter
+	                });
+                }//end error checking
+                
+                callback();//hides all divs then shows div0 and sets tag0 to 'active'
             }
         );
     }
