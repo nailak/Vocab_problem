@@ -5,34 +5,58 @@ html{
 height:100%;
 width:400px; }
 
-/*#WholePageContent{
-font-family:"cambria";
-}*/
 
 #WholePageContent{
-
+font-family: "cambria";
+font-size: 11pt;
 }
+
+
 img, #headerTitle{
 display:inline;
-font-family: "Georgia", "Helvetica", "serif";
+/*font-family: "Georgia", "Helvetica", "serif";*/
 }
+
+img{
+	height: 40px;
+	width: 40px;
+	}
+
 #headerContainer{
-border-bottom:2px solid black;
+	border-bottom:2px solid black;
+	margin-top: 0;
+	position: fixed;
+	width: 100%;
+	height: 40px;
+	/*float and clear so that next elements drop below this*/
+	float: left;
+	clear: both;
+ background-color: bisque;
 }
+
+#Tabs{
+	/*float and clear so that next elements drop below this*/
+	float: left;
+	clear: both;
+	width: 100%;
+	position: fixed;
+ font-weight:bold;
+  /*margint top to set it below the header*/
+ margin-top: 42px; /*42=height of headerContainer+ 2px of border*/
+ background-color: bisque;
+
+
+}
+
 #Box{
 /* this is the css class for the content displayed in each tab */
-margin: 0px;
-clear:both;
-/*overflow:hidden;*/
 line-height:19px;
-position: relative;
-padding:2% 2% 2% 2%;
-
+padding:0;
 width:100%;
-overflow: hidden;
-border:1px solid #CCC;
-top:-2px;
-background-color:AliceBlue;
+overflow: visible;
+/*float and clear so that next elements drop below this*/
+float: left;
+clear: both;
  /* The following four lines are to make the top /left and top right corners of each tab rounded. */
 /*-moz-border-radius-topleft: 4px;
 border-top-left-radius: 4px;
@@ -42,14 +66,16 @@ border-top-right-radius: 4px;*/
 h2 { text-align: center;
 }
 
-ul{margin: 0px}
+ul{margin: 0px;
+}
+
 #Box a {
  font-weight:bolder;
  border:0px;
  text-decoration:none;
  /*color:Chocolate;*/
-margin-left: 2%;
-margin-right:2%;
+margin-left: 5px;
+margin-right:5px;
 }
  
 /*#Box a:active{
@@ -74,11 +100,37 @@ display:block;
 margin-bottom:2%;
 }
  
-.nav .nav-pills{
+    	.nav-pills{
 margin-left:3%;
-margin-right:3%; }
+margin-right:3%;
+ }
 
-#Tabs{
- font-weight:bold;
- margin-left:2%;
- margin-right:2%;}
+ #Box div{
+ 	margin: 1% 1% 1% 1%;
+ }
+
+.nav-pills > li > a {
+ 	padding-bottom: 2px;
+ 	padding-top: 2px;
+ 	color:DarkRed;
+ 	 }
+
+ .nav-pills > .active > a, .nav-pills > .active > a:hover{
+ 	background-color: LightCoral;
+ 	color: Black;
+ 	 }
+
+
+
+ .article{
+ 	/*border: 1px outset Salmon;*/
+ 	background-color: beige;
+ 	-moz-border-radius: 5px;
+border-radius: 5px;
+margin: 0;
+
+ }
+
+.article a{
+	color:DarkRed;
+}

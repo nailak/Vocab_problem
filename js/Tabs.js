@@ -11,18 +11,19 @@ $(document).ready(function()
 	// console.log($('#tag1').parent());
 	
 	//CHANGE HEIGHT OF "BOX" AS PER CONTENT
-	ChangeBoxHeight('#div0');
-	
+	//ChangeBoxHeight('#div0');
+
+
 	function HideAllDivs(){
 		$('#Box').children().each(function(){
 			$(this).hide();
 		});
 	}
 	
-	function ChangeBoxHeight(divid){
+	/*function ChangeBoxHeight(divid){
 		HeightOfDivContent=$(divid).height();
 		$('#Box').css("height",HeightOfDivContent);
-	}
+	}*/
 
 	$('#Tabs a').live('click', function() {
 	// $("#Tabs a").on('click', function(){
@@ -50,7 +51,7 @@ $(document).ready(function()
 		$(divname).show();
 		
 		//CHANGE HEIGHT OF "BOX" AS PER CONTENT
-		ChangeBoxHeight(divname);
+		//ChangeBoxHeight(divname);
 
 		return false;
 	});

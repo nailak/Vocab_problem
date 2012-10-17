@@ -153,6 +153,12 @@ function getArticlesNYTimes(){
 				}
 			    console.log('Status: appending tag articles ..');
                 
+			    //SETTING MARGIN-TOP OF "BOX" AS PER HEIGHT OF TABS
+			    HeightOfTabs=$('#Tabs').height();
+			    MarginOfBox=HeightOfTabs+42; //42px is top marign of Tabs itself.
+			    MarginOfBox=MarginOfBox+'px';
+			    $('#Box').css('margin-top',MarginOfBox);
+			    
 			    //error checkin if there are no articles	
                 if(articlesObj.results.length == 0){
                 	console.log("THERE ARE NO ARTICLES");
