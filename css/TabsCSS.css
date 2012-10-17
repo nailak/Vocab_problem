@@ -23,7 +23,7 @@ img{
 	}
 
 #headerContainer{
-	border-bottom:2px solid black;
+	border-bottom:2px solid bisque;
 	margin-top: 0;
 	position: fixed;
 	width: 100%;
@@ -45,6 +45,7 @@ img{
  margin-top: 42px; /*42=height of headerContainer+ 2px of border*/
  background-color: bisque;
 margin-bottom: 5px;
+box-shadow: 1px 2px 2px #a9a9a9;
 
 }
 
@@ -100,6 +101,10 @@ margin-top:0%;*/
 /*display:block;
 margin-bottom:2%;
 }*/
+.nav{
+	margin-bottom: 5px;
+
+}
  
     	.nav-pills{
 margin-left:3%;
@@ -145,10 +150,11 @@ margin: 0;
 	padding:0px 0px 0px 0px;
 	margin: 0px 0px 0px 0px;
 	font-size: 11pt;
+	text-transform: capitalize;
 }
 
 .article p {
 	padding:0px 0px 0px 0px;
 	margin: 0px 0px 0px 0px;
-	font-size: 11pt;
+	font-size: 10pt;
 }
