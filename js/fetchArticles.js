@@ -169,7 +169,7 @@ function getArticlesNYTimes(){
 	                var x=0;//article counter
 	                $(articles).each(function(){
 	                    curArt=articles[x];
-	                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><a href="'+curArt.url +'">' + curArt.title + '</a></h5><p>' + curArt.byline + ', Date:'+curArt.date+'</p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></div>');
+	                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><a href="'+curArt.url +'">' + curArt.title + '</a></h5><p><i>' + curArt.byline + ', Date:'+curArt.date+'</i></p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></div>');
 	                    x++;//increment article counter
 	                });
                 }//end error checking

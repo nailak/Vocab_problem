@@ -70,36 +70,36 @@ ul{margin: 0px 0px 0px 0px ;
 	padding: 0px 0px 0px 0px ;
 }
 
-#Box a {
+/*#Box a {
  font-weight:bolder;
  border:0px;
  text-decoration:none;
- /*color:Chocolate;*/
-margin-left: 5px;
+ /*color:Chocolate;*/*/
+/*margin-left: 5px;
 margin-right:5px;
 }
- 
+ */
 /*#Box a:active{
 color:Chocolate;
 }*/
- 
+ /*
 #Box p{
  margin-left:5%;
  margin-right:5%;
  margin-bottom:0%;
-}
+}*/
 
-#Box i{
+/*#Box i{
 margin-left:5%;
 margin-right:5%;
 font-style:italic;
 color:Brown;
 text-transform:capitalize;
-margin-top:0%;
+margin-top:0%;*/
 /*NEED "DISPLAY:BLOCK" TO MAKE MARGINS WORK*/
-display:block;
+/*display:block;
 margin-bottom:2%;
-}
+}*/
  
     	.nav-pills{
 margin-left:3%;
@@ -137,3 +137,18 @@ margin: 0;
 	color:DarkRed;
 }
 
+.tagArticles a:hover{
+	text-decoration: underline;
+	}
+
+.article p i{
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	font-size: 11pt;
+}
+
+.article p {
+	padding:0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+	font-size: 11pt;
+}
