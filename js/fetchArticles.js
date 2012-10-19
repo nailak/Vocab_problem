@@ -4,7 +4,7 @@ var getTags = []; 		// we're getting the articles for these tags
 var tfTags = [];		// tags converted to Times Format
 var quoraTags = [];
 var requestNum = 0;
-
+var divHid = 0;			// number of times hideAllDivs has been called
 function returnMe(a){
 	return a;
 }
@@ -15,10 +15,8 @@ $(document).ready(function(){
 	
 	chrome.tabs.executeScript(null, {file: "contentscript.js"});
 
-
 	chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		if (sender.tab && requestNum == 0){
-
 
 			console.log("[[[ STEP 1 ]]] Getting Quora Tags: Request number: " + requestNum);
 			requestNum++;
@@ -34,8 +32,6 @@ $(document).ready(function(){
 
 					for (var i = 0; i < tags.length; i++){
 						var tagObj = $(tags[i]);
-						console.log("TAG OBJECT");
-						console.log(tagObj);
 						tagList.push(tagObj.html());
 					}
 					
@@ -43,10 +39,9 @@ $(document).ready(function(){
 			}
 			
 			function TLTest(){
-				console.log('TAG LIST IS: '+tagList);
 				removeDuplicates(logGetTags);
 			}
-
+			// Remove duplicate tags
 			function removeDuplicates(callback){
 				for (var i = 0; i < tagList.length; i++){
 
@@ -78,11 +73,15 @@ $(document).ready(function(){
 				callback();		
 			}
 			
+			// converts tags into a Times API-ready format, calls getArticlesNYTimes
 			function logGetTags(){
-				console.log(getTags);
+				console.log("INSIDE LOG GET TAGS");
 				convertToTimesFormat(getArticlesNYTimes);
+				// callback(); This was where the callback used to be
+				console.log("INSIDE LOG GET TAGS 2");
 			}
 
+			// Conver to format and send to Times when finished
 			function convertToTimesFormat(callback){
 				for (var i = getTags.length - 1; i >= 0; i--){
 					// quoraTags is what we're passing to the NY Times API, formatted accordingly
@@ -90,8 +89,6 @@ $(document).ready(function(){
 					
 					//tag = tag.replace(" ", "%20");
 					quoraTags.push(tag);
-					//console.log("TAG PRINTING ");
-					//console.log(tag);
 				}
 				callback();
 			}
@@ -100,7 +97,42 @@ $(document).ready(function(){
 	  else
 		sendResponse({}); // snub them.
 	});
-	
+// opens link in new tab
+function openLink(link){
+	chrome.tabs.create({url: url, active:false});
+}
+// called at the end of getArticlesNYTimes
+// adds links to the page after articles have been loaded
+function addLinks(){
+		console.log("iINSIDE ADD LINKS");
+		var currentUrls = [];
+		chrome.windows.getCurrent (function (win) {
+			chrome.tabs.getAllInWindow (win.id, function (tabs) {
+				for (var i=0; i<tabs.length; i++) {
+					var url = tabs[i].url;
+					currentUrls.push(url);
+				}
+			});
+		});
+		console.log("inside hide all divs");
+		console.log(currentUrls);
+
+		$('.article_link').one("click", function() {
+			console.log("Article link clicked.");
+			var url = $(this).children().attr('href');
+			var urlFound = false;
+			for (var i = 0; i < currentUrls.length; i++){
+				if (url == currentUrls[i]){
+					urlFound = true;
+					break;
+				}
+			}
+			if (urlFound == false){
+				// currentUrls.push(url);
+				chrome.tabs.create({url: url, active:false});
+			}
+		});
+}
 
 function getArticlesNYTimes(){
 
@@ -121,6 +153,7 @@ function getArticlesNYTimes(){
         console.log('End tag loop round: '+tagIndex+' >> Calling JSON..');
         tagIndex++; //move on to next tag in array
     }
+	console.log("Done with article TAGS");
 
     function HideAllDivs(){
 		$('#Box').children().each(function(){
@@ -130,7 +163,11 @@ function getArticlesNYTimes(){
     function hideDivsNow(){
     	HideAllDivs();
 		$('#div0').show();
-		console.log("Inside callback function hideDivsNow")
+		console.log("Inside callback function hideDivsNow");
+		divHid++;
+		if (divHid >= quoraTags.length){
+			addLinks();
+		}
     }
     function getArticles(currentTag,currentIndex,callback){ 
 
@@ -169,11 +206,27 @@ function getArticlesNYTimes(){
 	                var x=0;//article counter
 	                $(articles).each(function(){
 	                    curArt=articles[x];
-	                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><a href="'+curArt.url +'">' + curArt.title + '</a></h5><p><i>' + curArt.byline + ', Date:'+curArt.date+'</i></p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></div>');
+	                    $('.tagArticles').last().append('<div id="article'+x+'" class="article"><h5><div class="article_link" ><a href="'+curArt.url +'">' + curArt.title + '</a></div></h5><p><i>' + curArt.byline + ', Date:'+curArt.date+'</i></p><p>' + curArt.body + '...<a href="'+curArt.url +'">[Read More]</a></p></div>');
+						// var art = "#article" + x;
+						/*$(art).one("click", function() {
+							console.log("clicked");
+							console.log(this);
+							
+							//var url = $(this);
+							//.children().attr('href');
+							//console.log(url);
+							//var url = this.children().attr('href');
+							//openLink(url);
+						});*/ 
 	                    x++;//increment article counter
 	                });
+
+		
+
+
                 }//end error checking
                 
+
                 callback();//hides all divs then shows div0 and sets tag0 to 'active'
             }
         );
@@ -181,3 +234,7 @@ function getArticlesNYTimes(){
 	}
 
 });
+
+function returnUrl(url){
+	return url;
+}
