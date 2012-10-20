@@ -161,7 +161,7 @@ function getArticlesNYTimes(){
     }
 
     function getArticles(currentTag,currentIndex,callback){ 
-		// calls proxy
+		// call proxy which uses NYTimes API to search articles related to the current tag
         $.getJSON('https://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?tagname='+currentTag+'&callback=?', 
             function(json){ 
                 
@@ -170,13 +170,13 @@ function getArticlesNYTimes(){
 				tag = currentTag.substring(6, currentTag.length);//remove 'title:' from tag
 
 				//if statement to identify 'active' tag as the one with index 0
-				if (currentIndex == 0){//append first tag and set class to 'active' so its seleceted 
+				if (currentIndex == 0){//append first tag and set class to 'active' so its seleceted (css)
 					$('#tagSearch').append('<li class="active"><a id="tag0" href="">'+tag+'</a></li>');
-					$('#Box').append('<div id="div0" class="tagArticles"></div>');
+					$('#Box').append('<div id="div0" class="tagArticles"></div>');//container to later append articles
 				}
 				else{ //append tag without 'active' class so its not seleceted
 					$('#tagSearch').append('<li ><a id="tag'+currentIndex +'" href="">'+tag+'</a></li>');
-					$('#Box').append('<div id="div'+currentIndex+'" class="tagArticles"></div>');
+					$('#Box').append('<div id="div'+currentIndex+'" class="tagArticles"></div>');//container to later append articles
 				}
                 
 			    //SETTING MARGIN-TOP OF "BOX" AS PER HEIGHT OF TABS
@@ -185,12 +185,11 @@ function getArticlesNYTimes(){
 			    MarginOfBox=MarginOfBox+'px';
 			    $('#Box').css('margin-top',MarginOfBox);
 			    
-			    //error checkin if there are no articles	
+			    //error checkin if there are no articles returned from the API- print no articles found
                 if(articlesObj.results.length == 0){
                 	$('.tagArticles').last().append('<div id="" class="article"><h5>No articles found</h5></div>');
                 }
-                else{
-	                //append all articles for current tag
+                else{//append all articles for current tag
 	                var x=0;//article counter
 	                $(articles).each(function(){
 	                    curArt=articles[x];
@@ -198,7 +197,6 @@ function getArticlesNYTimes(){
 
 	                    x++;//increment article counter
 	                });
-
                 }//end error checking
                 
                 callback();//hides all divs then shows div0 and sets tag0 to 'active'
