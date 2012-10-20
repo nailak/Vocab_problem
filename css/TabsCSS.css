@@ -14,7 +14,6 @@ font-size: 11pt;
 
 img, #headerTitle{
 display:inline;
-/*font-family: "Georgia", "Helvetica", "serif";*/
 }
 
 img{
@@ -58,12 +57,8 @@ overflow: visible;
 /*float and clear so that next elements drop below this*/
 float: left;
 clear: both;
- /* The following four lines are to make the top /left and top right corners of each tab rounded. */
-/*-moz-border-radius-topleft: 4px;
-border-top-left-radius: 4px;
--moz-border-radius-topright: 4px;
-border-top-right-radius: 4px;*/
-}
+
+
 h2 { text-align: center;
 }
 
@@ -71,36 +66,6 @@ ul{margin: 0px 0px 0px 0px ;
 	padding: 0px 0px 0px 0px ;
 }
 
-/*#Box a {
- font-weight:bolder;
- border:0px;
- text-decoration:none;
- /*color:Chocolate;*/*/
-/*margin-left: 5px;
-margin-right:5px;
-}
- */
-/*#Box a:active{
-color:Chocolate;
-}*/
- /*
-#Box p{
- margin-left:5%;
- margin-right:5%;
- margin-bottom:0%;
-}*/
-
-/*#Box i{
-margin-left:5%;
-margin-right:5%;
-font-style:italic;
-color:Brown;
-text-transform:capitalize;
-margin-top:0%;*/
-/*NEED "DISPLAY:BLOCK" TO MAKE MARGINS WORK*/
-/*display:block;
-margin-bottom:2%;
-}*/
 .nav{
 	margin-bottom: 5px;
 
@@ -131,8 +96,7 @@ margin-right:3%;
  .article{
  	border-bottom: 1px outset Salmon;
  	padding-bottom: 3px;
- 	/*background-color: beige;*/
- 	-moz-border-radius: 5px;
+  	-moz-border-radius: 5px;
 border-radius: 5px;
 margin: 0;
 
@@ -150,7 +114,7 @@ margin: 0;
 	padding:0px 0px 0px 0px;
 	margin: 0px 0px 0px 0px;
 	font-size: 11pt;
-	text-transform: capitalize;
+	text-transform: 
 }
 
 .article p {
