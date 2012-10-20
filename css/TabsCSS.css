@@ -57,7 +57,7 @@ overflow: visible;
 /*float and clear so that next elements drop below this*/
 float: left;
 clear: both;
-
+}
 
 h2 { text-align: center;
 }
