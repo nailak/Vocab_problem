@@ -14,6 +14,42 @@ $(document).ready(function(){
 	
 	chrome.tabs.executeScript(null, {file: "contentscript.js"});
 
+	// check if this is Quora by getting domain
+	chrome.windows.getCurrent (function (win) {
+		chrome.tabs.query (({'windowId':  chrome.windows.WINDOW_ID_CURRENT}), function(tabs){
+			// Gets all the tabs
+			for (var i=0; i<tabs.length; i++) {
+				// finds the active tab and returns the domain
+				if (tabs[i].active == true){
+					var domain = tabs[i].url;
+					break;
+				}
+			}
+			domainCheck(domain); // calls domainCheck, passing it the variable domain
+		});
+	});
+
+	// check if the page domain is Quora
+	function domainCheck(domain){
+		// if it is, proceed
+		if (domain.substring(0, 20) == "http://www.quora.com"){
+			console.log(domain);
+			$("#ifNotQuora").hide();
+			$("#ifQuora").show();
+		}		
+		// otherwise, this is not Quora. Show a link when the extension opens
+		else {
+			$("#ifNotQuora").show();
+			$("#ifQuora").hide();
+			// activate Go to Quora button
+			$('#go-to-quora').click(function() {
+					chrome.tabs.create({url: "http://www.quora.com/", active:true});
+					console.log("new tab");
+					window.close();
+			});
+		}
+	}// end of domainCheck()
+
 	chrome.extension.onRequest.addListener(function(request, sender, sendResponse) {
 		if (sender.tab && requestNum == 0){
 
@@ -85,7 +121,6 @@ $(document).ready(function(){
 					// quoraTags is what we're passing to the NY Times API, formatted accordingly
 					var tag = "title:" + getTags[i];
 					
-					//tag = tag.replace(" ", "%20");
 					quoraTags.push(tag);
 				}
 				callback();
