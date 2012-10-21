@@ -4,9 +4,10 @@ header('Access-Control-Allow-Origin: *');
 
 //get the current tag name from Quora
 $tagquery= $_GET["tagname"];
+$tagqueryStr = str_replace(" ", "%20", $tagquery);
 
 //pull related articles from NYT API
-$url = "http://api.nytimes.com/svc/search/v1/article?api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&query=".$tagquery;
+$url = "http://api.nytimes.com/svc/search/v1/article?api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&query=".$tagqueryStr;
 // $url = "http://api.nytimes.com/svc/search/v1/article?api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105&query=title:If%20I%20like%20X,%20will%20I%20like%20Y?&rank=closest";
 // $url ='http://api.nytimes.com/svc/search/v1/article?query=lakes%20ice%20org_facet:[ENVIRONMENTAL%20PROTECTION%20AGENCY]&rank=closest&api-key=f6fcb7d8529cc6f75a5686e2496a3348:3:66738105'
 

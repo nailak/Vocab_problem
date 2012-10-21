@@ -120,7 +120,6 @@ $(document).ready(function(){
 				for (var i = getTags.length - 1; i >= 0; i--){
 					// quoraTags is what we're passing to the NY Times API, formatted accordingly
 					var tag = "title:" + getTags[i];
-					
 					quoraTags.push(tag);
 				}
 				callback();
@@ -164,10 +163,7 @@ function addLinks(){
 
 function getArticlesNYTimes(){
 
-    //declare a variable that holds Quora array of tags
-	console.log(quoraTags);
-
-    //loop through tags and get articles related to each 
+    //loop through quora tags array and get articles related to each 
     for (var tagIndex in quoraTags){
         //put current tag in a variable
         tagname=quoraTags[tagIndex];
@@ -177,13 +173,13 @@ function getArticlesNYTimes(){
         tagIndex++; //move on to next tag in array
     }
 
-	// Hide all the divs
+	// Hide all the divs function (to be called later)
     function HideAllDivs(){
 		$('#Box').children().each(function(){
 			$(this).hide();
 		});
 	}
-	// hide all the divs now, show the first one by default
+	// hide all the divs, calls prev function and shows the first div by default
     function hideDivsNow(){
     	HideAllDivs();
 		$('#div0').show();
@@ -195,8 +191,9 @@ function getArticlesNYTimes(){
 		}
     }
 
+    //function that makes the JSON call to NYT
     function getArticles(currentTag,currentIndex,callback){ 
-		// calls proxy
+		// calls proxy and uses the checks for current tag in NYT articles
         $.getJSON('https://people.ischool.berkeley.edu/~nkhalawi/NYTproxy.php?tagname='+currentTag+'&callback=?', 
             function(json){ 
                 
